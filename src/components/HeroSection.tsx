@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { StackTelemetry } from '@/components/StackTelemetry';
 import { useLocale } from '@/contexts/LocaleContext';
+import heroBackground from '@/assets/hero-background.jpg';
 import { 
   ArrowRight, 
   Layers, 
@@ -27,14 +28,20 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen pt-24 pb-16 overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+        style={{ backgroundImage: `url(${heroBackground})` }}
+      />
+      
       {/* Background Grid */}
-      <div className="absolute inset-0 schematic-grid opacity-30" />
+      <div className="absolute inset-0 schematic-grid opacity-20" />
       
       {/* Animated Scan Line */}
       <div className="scan-line" />
       
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
       
       {/* Glow Effects */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
