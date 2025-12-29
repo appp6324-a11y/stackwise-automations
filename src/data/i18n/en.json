@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "capabilities": "Capabilities",
+    "marketplace": "Automation Matrix",
+    "builder": "Stack Builder",
+    "pricing": "Pricing"
+  },
+  "hero": {
+    "title": "Build Your Business Automation Stack",
+    "subtitle": "AI agents, orchestration workflows, and integration layers — configured for your organization.",
+    "badge": "Enterprise Automation Platform"
+  },
+  "cta": {
+    "explore": "Explore Automation Templates",
+    "build": "Build Custom Stack",
+    "addToStack": "Add to Stack",
+    "requestDeployment": "Request Deployment",
+    "exportManifest": "Export Manifest",
+    "contact": "Contact"
+  },
+  "telemetry": {
+    "title": "Stack Telemetry",
+    "templates": "Templates Selected",
+    "integrations": "Integrations",
+    "agents": "AI Agents",
+    "complexity": "Complexity Tier",
+    "priceFloor": "Price Floor"
+  },
+  "marketplace": {
+    "title": "Automation Matrix",
+    "subtitle": "Browse and select automation templates for your stack",
+    "search": "Search templates...",
+    "filters": "Filters",
+    "category": "Category",
+    "industry": "Industry",
+    "layers": "Capability Layers",
+    "agentInvolvement": "Agent Involvement",
+    "allCategories": "All Categories",
+    "allIndustries": "All Industries",
+    "resultsCount": "{{count}} templates"
+  },
+  "template": {
+    "startingFrom": "Starting from",
+    "agentRequired": "AI Agent Required",
+    "agentOptional": "Agent Optional",
+    "noAgent": "No Agent",
+    "deploymentEta": "Deployment ETA",
+    "hours": "hours",
+    "inputs": "Inputs",
+    "outputs": "Outputs",
+    "integrations": "Suggested Integrations"
+  },
+  "builder": {
+    "title": "Capability Lattice",
+    "subtitle": "Select integrations to configure your automation stack",
+    "selectedApps": "Selected Apps"
+  },
+  "manifest": {
+    "title": "Stack Manifest",
+    "subtitle": "Your configured automation stack summary",
+    "readinessChecks": "Readiness Checks",
+    "governance": "Governance",
+    "audit": "Audit Trail",
+    "reliability": "Reliability"
+  },
+  "pricing": {
+    "startingFrom": "Starting from",
+    "disclaimer": "Final pricing computed from integration breadth, data surface area, and governance constraints.",
+    "currency": "Currency"
+  },
+  "common": {
+    "selected": "Selected",
+    "clear": "Clear",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "footer": {
+    "poweredBy": "Powered by enterprise-grade automation infrastructure"
+  }
+}
