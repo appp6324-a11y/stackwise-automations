@@ -12,6 +12,15 @@ const badgeVariants = cva(
         secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
         destructive: "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
         outline: "text-foreground",
+        // Enterprise tier variants
+        standard: "bg-[hsl(var(--tier-standard)/0.15)] text-[hsl(var(--tier-standard))] border-[hsl(var(--tier-standard)/0.3)] font-mono uppercase tracking-wider text-[10px]",
+        pro: "bg-[hsl(var(--tier-pro)/0.15)] text-[hsl(var(--tier-pro))] border-[hsl(var(--tier-pro)/0.3)] font-mono uppercase tracking-wider text-[10px]",
+        enterprise: "bg-[hsl(var(--tier-enterprise)/0.15)] text-[hsl(var(--tier-enterprise))] border-[hsl(var(--tier-enterprise)/0.3)] font-mono uppercase tracking-wider text-[10px]",
+        // Layer variants
+        layer: "bg-primary/10 text-primary border-primary/20 font-mono text-[10px]",
+        // Agent variants
+        agent: "bg-accent/20 text-accent border-accent/30",
+        "agent-optional": "bg-muted text-muted-foreground border-border",
       },
     },
     defaultVariants: {

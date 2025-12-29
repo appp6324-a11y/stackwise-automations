@@ -1,0 +1,22 @@
+{
+  "supportedLocales": [
+    { "code": "en", "name": "English", "currency": "USD", "rtl": false },
+    { "code": "es", "name": "Español", "currency": "EUR", "rtl": false },
+    { "code": "fr", "name": "Français", "currency": "EUR", "rtl": false },
+    { "code": "de", "name": "Deutsch", "currency": "EUR", "rtl": false },
+    { "code": "ar", "name": "العربية", "currency": "AED", "rtl": true },
+    { "code": "hi", "name": "हिन्दी", "currency": "INR", "rtl": false },
+    { "code": "pt", "name": "Português", "currency": "BRL", "rtl": false }
+  ],
+  "defaultLocale": "en",
+  "defaultCurrency": "USD",
+  "currencyOptions": [
+    { "code": "USD", "name": "US Dollar" },
+    { "code": "EUR", "name": "Euro" },
+    { "code": "GBP", "name": "British Pound" },
+    { "code": "AED", "name": "UAE Dirham" },
+    { "code": "SAR", "name": "Saudi Riyal" },
+    { "code": "INR", "name": "Indian Rupee" },
+    { "code": "BRL", "name": "Brazilian Real" }
+  ]
+}

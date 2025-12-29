@@ -1,0 +1,99 @@
+{
+  "layers": {
+    "channels": {
+      "name": "Channels",
+      "description": "Communication and messaging platforms",
+      "apps": [
+        { "id": "email", "name": "Email", "icon": "mail" },
+        { "id": "whatsapp", "name": "WhatsApp", "icon": "message-circle" },
+        { "id": "sms", "name": "SMS", "icon": "smartphone" },
+        { "id": "slack", "name": "Slack", "icon": "hash" },
+        { "id": "teams", "name": "Microsoft Teams", "icon": "users" },
+        { "id": "telegram", "name": "Telegram", "icon": "send" },
+        { "id": "intercom", "name": "Intercom", "icon": "message-square" },
+        { "id": "zendesk", "name": "Zendesk", "icon": "headphones" }
+      ]
+    },
+    "crm": {
+      "name": "CRM",
+      "description": "Customer relationship management systems",
+      "apps": [
+        { "id": "salesforce", "name": "Salesforce", "icon": "cloud" },
+        { "id": "hubspot", "name": "HubSpot", "icon": "target" },
+        { "id": "pipedrive", "name": "Pipedrive", "icon": "git-branch" },
+        { "id": "zoho", "name": "Zoho CRM", "icon": "database" },
+        { "id": "monday", "name": "Monday.com", "icon": "layout-grid" },
+        { "id": "airtable", "name": "Airtable", "icon": "table" }
+      ]
+    },
+    "data": {
+      "name": "Data",
+      "description": "Data storage, processing, and analytics",
+      "apps": [
+        { "id": "google-sheets", "name": "Google Sheets", "icon": "sheet" },
+        { "id": "notion", "name": "Notion", "icon": "file-text" },
+        { "id": "postgresql", "name": "PostgreSQL", "icon": "database" },
+        { "id": "bigquery", "name": "BigQuery", "icon": "bar-chart" },
+        { "id": "snowflake", "name": "Snowflake", "icon": "snowflake" },
+        { "id": "supabase", "name": "Supabase", "icon": "zap" }
+      ]
+    },
+    "payments": {
+      "name": "Payments",
+      "description": "Payment processing and billing",
+      "apps": [
+        { "id": "stripe", "name": "Stripe", "icon": "credit-card" },
+        { "id": "paypal", "name": "PayPal", "icon": "dollar-sign" },
+        { "id": "quickbooks", "name": "QuickBooks", "icon": "calculator" },
+        { "id": "xero", "name": "Xero", "icon": "trending-up" },
+        { "id": "square", "name": "Square", "icon": "square" }
+      ]
+    },
+    "ai": {
+      "name": "AI",
+      "description": "Artificial intelligence and machine learning",
+      "apps": [
+        { "id": "openai", "name": "OpenAI", "icon": "brain" },
+        { "id": "anthropic", "name": "Anthropic", "icon": "cpu" },
+        { "id": "google-ai", "name": "Google AI", "icon": "sparkles" },
+        { "id": "huggingface", "name": "Hugging Face", "icon": "smile" }
+      ]
+    },
+    "ops": {
+      "name": "Ops",
+      "description": "Operations and workflow automation",
+      "apps": [
+        { "id": "n8n", "name": "n8n", "icon": "workflow" },
+        { "id": "zapier", "name": "Zapier", "icon": "zap" },
+        { "id": "make", "name": "Make", "icon": "layers" },
+        { "id": "asana", "name": "Asana", "icon": "check-square" },
+        { "id": "jira", "name": "Jira", "icon": "clipboard" },
+        { "id": "calendly", "name": "Calendly", "icon": "calendar" },
+        { "id": "pagerduty", "name": "PagerDuty", "icon": "bell" }
+      ]
+    }
+  },
+  "categories": [
+    "Recruitment",
+    "Sales", 
+    "Support",
+    "Operations",
+    "Finance",
+    "E-commerce",
+    "Real Estate",
+    "Healthcare"
+  ],
+  "industries": [
+    "Recruitment",
+    "Staffing",
+    "Technology",
+    "Services",
+    "E-commerce",
+    "Retail",
+    "Real Estate",
+    "Healthcare",
+    "Finance",
+    "Marketing",
+    "All Industries"
+  ]
+}
