@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LocaleProvider } from "@/contexts/LocaleContext";
 import { StackProvider } from "@/contexts/StackContext";
+import { Footer } from "@/components/Footer";
 import Index from "./pages/Index";
 import Marketplace from "./pages/Marketplace";
 import Builder from "./pages/Builder";
@@ -21,13 +22,16 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/marketplace" element={<Marketplace />} />
-              <Route path="/builder" element={<Builder />} />
-              <Route path="/manifest" element={<Manifest />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <div className="min-h-screen flex flex-col">
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/marketplace" element={<Marketplace />} />
+                <Route path="/builder" element={<Builder />} />
+                <Route path="/manifest" element={<Manifest />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <Footer />
+            </div>
           </BrowserRouter>
         </TooltipProvider>
       </StackProvider>
