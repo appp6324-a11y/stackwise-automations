@@ -26,6 +26,9 @@ export function Footer() {
               </div>
               <span className="font-semibold text-lg">SACHIDAX-AI-AutoStack</span>
             </Link>
+            <p className="text-muted-foreground text-sm max-w-md mb-3">
+              Founded by <span className="text-foreground font-medium">Sachida</span> — an automation architect and AI systems builder specializing in enterprise workflow orchestration, intelligent process automation, and scalable integration solutions.
+            </p>
             <p className="text-muted-foreground text-sm max-w-md">
               {t.footer.poweredBy}
             </p>
@@ -58,11 +61,11 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="mailto:contact@sachidax.com"
+                  href="mailto:brainimmensitynetwork@gmail.com"
                   className="text-sm text-foreground/70 hover:text-primary transition-colors flex items-center gap-2"
                 >
                   <Mail className="w-4 h-4" />
-                  contact@sachidax.com
+                  brainimmensitynetwork@gmail.com
                 </a>
               </li>
               <li>
@@ -79,7 +82,7 @@ export function Footer() {
             </ul>
             <div className="flex items-center gap-3 mt-4">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/webulity/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 rounded-lg bg-muted/50 border border-border/50 flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 transition-colors"
@@ -87,7 +90,7 @@ export function Footer() {
                 <Linkedin className="w-4 h-4" />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://x.com/BroChordNetwork"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 rounded-lg bg-muted/50 border border-border/50 flex items-center justify-center hover:bg-primary/20 hover:border-primary/30 transition-colors"
