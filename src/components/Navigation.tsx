@@ -3,6 +3,7 @@ import { Cpu, LayoutGrid, Layers, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { LocaleSelector } from '@/components/LocaleSelector';
 import { useLocale } from '@/contexts/LocaleContext';
+import sachidaxLogo from '@/assets/sachidax-logo.png';
 
 export function Navigation() {
   const { t } = useLocale();
@@ -19,8 +20,8 @@ export function Navigation() {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-lg bg-primary/20 border border-primary/30 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
-            <Cpu className="w-5 h-5 text-primary" />
+          <div className="w-10 h-10 rounded-lg bg-primary/20 border border-primary/30 flex items-center justify-center group-hover:bg-primary/30 transition-colors overflow-hidden">
+            <img src={sachidaxLogo} alt="SACHIDAX Logo" className="w-8 h-8 object-contain invert" />
           </div>
           <span className="font-semibold text-lg hidden sm:block">
             SACHIDAX-AI-AutoStack
