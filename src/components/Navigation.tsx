@@ -23,7 +23,7 @@ export function Navigation() {
             <Cpu className="w-5 h-5 text-primary" />
           </div>
           <span className="font-semibold text-lg hidden sm:block">
-            AutoStack
+            SACHIDAX-AI-AutoStack
           </span>
         </Link>
 
