@@ -15,7 +15,7 @@ import {
 import { Link } from 'react-router-dom';
 
 export function StackTelemetry() {
-  const { stack, getTotalPrice, clearStack } = useStack();
+  const { stack, getTotalPrice, clearStack, isLoading, isSaving } = useStack();
   const { t, formatPrice } = useLocale();
 
   const tierVariant = {
@@ -25,12 +25,26 @@ export function StackTelemetry() {
     Enterprise: 'enterprise',
   } as const;
 
+  if (isLoading) {
+    return (
+      <Card variant="telemetry" className="w-full p-4">
+        <div className="flex items-center justify-center py-4">
+          <div className="animate-pulse flex items-center gap-2">
+            <Gauge className="w-4 h-4 text-primary" />
+            <span className="text-sm text-muted-foreground">Loading stack...</span>
+          </div>
+        </div>
+      </Card>
+    );
+  }
+
   return (
     <Card variant="telemetry" className="w-full p-4">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
-          <Gauge className="w-4 h-4 text-primary" />
+          <Gauge className={`w-4 h-4 text-primary ${isSaving ? 'animate-pulse' : ''}`} />
           {t.telemetry.title}
+          {isSaving && <span className="text-[10px] text-muted-foreground">(saving...)</span>}
         </h3>
         {stack.templates.length > 0 && (
           <Button 

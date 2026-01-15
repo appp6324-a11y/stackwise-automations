@@ -1,25 +1,15 @@
 import { Navigation } from '@/components/Navigation';
 import { HeroSection } from '@/components/HeroSection';
-import { useLocale } from '@/contexts/LocaleContext';
+import { Footer } from '@/components/Footer';
 
 const Index = () => {
-  const { t } = useLocale();
-
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Navigation />
-      <main>
+      <main className="flex-1">
         <HeroSection />
-        
-        {/* Footer */}
-        <footer className="border-t border-border/50 py-8 mt-16">
-          <div className="container mx-auto px-4 text-center">
-            <p className="text-sm text-muted-foreground">
-              {t.footer.poweredBy}
-            </p>
-          </div>
-        </footer>
       </main>
+      <Footer />
     </div>
   );
 };
