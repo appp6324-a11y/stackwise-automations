@@ -3,6 +3,7 @@ import { useLocale } from '@/contexts/LocaleContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { ContactForm } from '@/components/ContactForm';
 import {
   FileJson,
   Copy,
@@ -16,6 +17,7 @@ import {
   ClipboardList,
   Gauge,
   X,
+  Rocket,
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -245,7 +247,19 @@ Please contact us to discuss deployment.
             <CardTitle className="text-lg">{t.cta.contact}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            <Button variant="hero" className="w-full gap-2" onClick={handleCopyMessage}>
+            {/* Request Deployment - with form */}
+            <ContactForm
+              source="deployment_request"
+              includeManifest={true}
+              trigger={
+                <Button variant="hero" className="w-full gap-2">
+                  <Rocket className="w-4 h-4" />
+                  Request Deployment
+                </Button>
+              }
+            />
+            
+            <Button variant="glass" className="w-full gap-2" onClick={handleCopyMessage}>
               <Copy className="w-4 h-4" />
               Copy Message
             </Button>
@@ -261,10 +275,17 @@ Please contact us to discuss deployment.
                 Email
               </a>
             </Button>
-            <Button variant="glass" className="w-full gap-2">
-              <Calendar className="w-4 h-4" />
-              Book Consultation
-            </Button>
+            
+            {/* General Contact Form */}
+            <ContactForm
+              source="contact_form"
+              trigger={
+                <Button variant="glass" className="w-full gap-2">
+                  <Calendar className="w-4 h-4" />
+                  Book Consultation
+                </Button>
+              }
+            />
           </CardContent>
         </Card>
 
