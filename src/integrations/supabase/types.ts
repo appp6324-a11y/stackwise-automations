@@ -14,7 +14,93 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      leads: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string
+          id: string
+          message: string | null
+          name: string
+          phone: string | null
+          session_id: string | null
+          source: string | null
+          stack_manifest: Json | null
+          status: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          message?: string | null
+          name: string
+          phone?: string | null
+          session_id?: string | null
+          source?: string | null
+          stack_manifest?: Json | null
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string | null
+          session_id?: string | null
+          source?: string | null
+          stack_manifest?: Json | null
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      stacks: {
+        Row: {
+          agents_enabled: number
+          complexity_tier: string
+          created_at: string
+          id: string
+          name: string | null
+          selected_apps: string[]
+          session_id: string
+          templates: Json
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          agents_enabled?: number
+          complexity_tier?: string
+          created_at?: string
+          id?: string
+          name?: string | null
+          selected_apps?: string[]
+          session_id: string
+          templates?: Json
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          agents_enabled?: number
+          complexity_tier?: string
+          created_at?: string
+          id?: string
+          name?: string | null
+          selected_apps?: string[]
+          session_id?: string
+          templates?: Json
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
