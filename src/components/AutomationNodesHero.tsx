@@ -155,8 +155,42 @@ export function AutomationNodesHero() {
           </p>
         </div>
 
-        {/* Node Connection Visualization */}
-        <div className="relative w-full aspect-[16/9] md:aspect-[21/9] max-w-6xl mx-auto mb-12 fade-in" style={{ animationDelay: '0.2s' }}>
+        {/* Node Connection Visualization - 3D Perspective Container */}
+        <div 
+          className="relative w-full aspect-[16/9] md:aspect-[21/9] max-w-6xl mx-auto mb-12 fade-in"
+          style={{ 
+            animationDelay: '0.2s',
+            perspective: '1200px',
+            perspectiveOrigin: '50% 50%',
+          }}
+        >
+          {/* 3D Tilted Visualization Plane */}
+          <div
+            className="relative w-full h-full transition-transform duration-700 hover:scale-[1.02]"
+            style={{
+              transform: 'rotateX(12deg) rotateY(-3deg) rotateZ(1deg)',
+              transformStyle: 'preserve-3d',
+            }}
+          >
+            {/* Depth Shadow Layer */}
+            <div 
+              className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/20"
+              style={{
+                transform: 'translateZ(-40px)',
+                boxShadow: '0 40px 80px -20px hsl(var(--primary) / 0.15), 0 20px 40px -10px hsl(var(--background) / 0.8)',
+              }}
+            />
+            
+            {/* Main Visualization Surface */}
+            <div 
+              className="absolute inset-0 rounded-2xl glass-panel overflow-hidden"
+              style={{
+                transform: 'translateZ(0px)',
+                boxShadow: '0 25px 50px -12px hsl(var(--primary) / 0.25), inset 0 1px 0 hsl(var(--foreground) / 0.05)',
+              }}
+            >
+              {/* Inner Grid Pattern */}
+              <div className="absolute inset-0 schematic-grid opacity-20" />
           {/* SVG Connection Lines */}
           <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
             <defs>
@@ -260,6 +294,8 @@ export function AutomationNodesHero() {
               </div>
               <div className="absolute inset-0 rounded-full border-2 border-primary/30 animate-ping" style={{ animationDuration: '2s' }} />
               <div className="absolute -inset-4 rounded-full border border-primary/20 animate-pulse" />
+            </div>
+          </div>
             </div>
           </div>
         </div>
