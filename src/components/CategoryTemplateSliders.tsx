@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
-import { useStack } from '@/contexts/StackContext';
+import { useMemo, useState } from 'react';
+import { useStack, Template } from '@/contexts/StackContext';
 import { useLocale } from '@/contexts/LocaleContext';
 import { Link } from 'react-router-dom';
-import { ChevronRight, Briefcase, Users, Headphones, Settings, DollarSign, ShoppingCart, Home, Stethoscope } from 'lucide-react';
+import { ChevronRight, Briefcase, Users, Headphones, Settings, DollarSign, ShoppingCart, Home, Stethoscope, Star, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Carousel,
@@ -11,6 +11,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { TemplatePreviewModal } from './TemplatePreviewModal';
 
 // Category icons mapping
 const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -37,18 +38,16 @@ const categoryColors: Record<string, string> = {
 };
 
 interface TemplateCardMiniProps {
-  template: {
-    id: string;
-    name: string;
-    what_it_automates: string;
-    starting_price_usd: number;
-    capability_layers: string[];
-  };
+  template: Template;
+  onClick: () => void;
 }
 
-function TemplateCardMini({ template }: TemplateCardMiniProps) {
+function TemplateCardMini({ template, onClick }: TemplateCardMiniProps) {
   return (
-    <div className="glass-panel rounded-xl p-4 h-full hover:border-primary/50 transition-all duration-300 hover:scale-[1.02] group cursor-pointer">
+    <div 
+      className="glass-panel rounded-xl p-4 h-full hover:border-primary/50 transition-all duration-300 hover:scale-[1.02] group cursor-pointer"
+      onClick={onClick}
+    >
       <h4 className="font-semibold text-sm line-clamp-2 mb-2 group-hover:text-primary transition-colors">
         {template.name}
       </h4>
@@ -74,9 +73,40 @@ function TemplateCardMini({ template }: TemplateCardMiniProps) {
   );
 }
 
+// Mobile compact card for 4-tile grid
+function TemplateCardCompact({ template, onClick }: TemplateCardMiniProps) {
+  return (
+    <div 
+      className="glass-panel rounded-lg p-3 hover:border-primary/50 transition-all duration-300 cursor-pointer group"
+      onClick={onClick}
+    >
+      <h4 className="font-semibold text-xs line-clamp-2 mb-1 group-hover:text-primary transition-colors">
+        {template.name}
+      </h4>
+      <div className="flex items-center justify-between">
+        <span className="text-[10px] font-mono text-primary">
+          ${template.starting_price_usd}
+        </span>
+        <span className="text-[9px] px-1 py-0.5 rounded bg-muted text-muted-foreground">
+          {template.capability_layers[0]}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export function CategoryTemplateSliders() {
   const { templates } = useStack();
   const { t } = useLocale();
+  const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // Get featured templates (top rated / most used - using price as proxy for "premium")
+  const featuredTemplates = useMemo(() => {
+    return [...templates]
+      .filter(t => t.slo_tier === 'Pro' || t.slo_tier === 'Enterprise' || t.agent_involvement === 'Required')
+      .slice(0, 12);
+  }, [templates]);
 
   // Group templates by category
   const templatesByCategory = useMemo(() => {
@@ -94,6 +124,11 @@ export function CategoryTemplateSliders() {
     return Object.entries(grouped).filter(([_, items]) => items.length > 0);
   }, [templates]);
 
+  const handleTemplateClick = (template: Template) => {
+    setSelectedTemplate(template);
+    setModalOpen(true);
+  };
+
   if (templatesByCategory.length === 0) {
     return null;
   }
@@ -103,6 +138,69 @@ export function CategoryTemplateSliders() {
       <div className="absolute inset-0 schematic-grid opacity-10" />
       
       <div className="container mx-auto px-4 relative">
+        {/* Featured Templates Section */}
+        {featuredTemplates.length > 0 && (
+          <div className="mb-16">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/30 to-accent/30 border border-primary/40 flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-lg md:text-xl font-semibold flex items-center gap-2">
+                    <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                    Featured Templates
+                  </h3>
+                  <span className="text-xs text-muted-foreground font-mono">
+                    Most popular automations
+                  </span>
+                </div>
+              </div>
+              <Link to="/marketplace">
+                <Button variant="ghost" size="sm" className="gap-1 text-xs">
+                  View All
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
+
+            {/* Desktop: Carousel, Mobile: 4-tile grid */}
+            <div className="hidden md:block">
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-4">
+                  {featuredTemplates.map((template) => (
+                    <CarouselItem 
+                      key={template.id} 
+                      className="pl-4 basis-1/3 lg:basis-1/4 xl:basis-1/5"
+                    >
+                      <TemplateCardMini template={template} onClick={() => handleTemplateClick(template)} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="-left-4 bg-background/80 backdrop-blur-sm" />
+                <CarouselNext className="-right-4 bg-background/80 backdrop-blur-sm" />
+              </Carousel>
+            </div>
+
+            {/* Mobile: 4-tile grid */}
+            <div className="md:hidden grid grid-cols-2 gap-3">
+              {featuredTemplates.slice(0, 4).map((template) => (
+                <TemplateCardCompact 
+                  key={template.id} 
+                  template={template} 
+                  onClick={() => handleTemplateClick(template)} 
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-4xl font-bold mb-4">
             <span className="text-gradient">Explore by Category</span>
@@ -140,34 +238,52 @@ export function CategoryTemplateSliders() {
                   </Link>
                 </div>
 
-                {/* Templates Carousel */}
-                <Carousel
-                  opts={{
-                    align: "start",
-                    loop: false,
-                  }}
-                  className="w-full"
-                >
-                  <CarouselContent className="-ml-2 md:-ml-4">
-                    {categoryTemplates.slice(0, 10).map((template) => (
-                      <CarouselItem 
-                        key={template.id} 
-                        className="pl-2 md:pl-4 basis-[85%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
-                      >
-                        <Link to={`/marketplace?template=${template.id}`}>
-                          <TemplateCardMini template={template} />
-                        </Link>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="hidden md:flex -left-4 bg-background/80 backdrop-blur-sm" />
-                  <CarouselNext className="hidden md:flex -right-4 bg-background/80 backdrop-blur-sm" />
-                </Carousel>
+                {/* Desktop: Templates Carousel */}
+                <div className="hidden md:block">
+                  <Carousel
+                    opts={{
+                      align: "start",
+                      loop: false,
+                    }}
+                    className="w-full"
+                  >
+                    <CarouselContent className="-ml-4">
+                      {categoryTemplates.slice(0, 10).map((template) => (
+                        <CarouselItem 
+                          key={template.id} 
+                          className="pl-4 basis-1/3 lg:basis-1/4 xl:basis-1/5"
+                        >
+                          <TemplateCardMini template={template} onClick={() => handleTemplateClick(template)} />
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="-left-4 bg-background/80 backdrop-blur-sm" />
+                    <CarouselNext className="-right-4 bg-background/80 backdrop-blur-sm" />
+                  </Carousel>
+                </div>
+
+                {/* Mobile: 4-tile grid per category */}
+                <div className="md:hidden grid grid-cols-2 gap-3">
+                  {categoryTemplates.slice(0, 4).map((template) => (
+                    <TemplateCardCompact 
+                      key={template.id} 
+                      template={template} 
+                      onClick={() => handleTemplateClick(template)} 
+                    />
+                  ))}
+                </div>
               </div>
             );
           })}
         </div>
       </div>
+
+      {/* Template Preview Modal */}
+      <TemplatePreviewModal 
+        template={selectedTemplate}
+        open={modalOpen}
+        onOpenChange={setModalOpen}
+      />
     </section>
   );
 }
