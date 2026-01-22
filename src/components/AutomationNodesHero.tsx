@@ -35,6 +35,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { CategoryTemplateSliders } from './CategoryTemplateSliders';
 
 // Node types for the automation visualization
 const nodeTypes = {
@@ -357,6 +358,10 @@ export function AutomationNodesHero() {
           </Link>
         </div>
       </div>
+
+      {/* Category Template Sliders */}
+      <CategoryTemplateSliders />
     </section>
   );
 }
+
