@@ -100,6 +100,21 @@ export function CategoryTemplateSliders() {
   const { t } = useLocale();
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, number>>({});
+
+  const INITIAL_MOBILE_COUNT = 4;
+  const LOAD_MORE_COUNT = 4;
+
+  const getVisibleCount = (category: string) => {
+    return expandedCategories[category] || INITIAL_MOBILE_COUNT;
+  };
+
+  const handleLoadMore = (category: string, totalCount: number) => {
+    setExpandedCategories(prev => ({
+      ...prev,
+      [category]: Math.min((prev[category] || INITIAL_MOBILE_COUNT) + LOAD_MORE_COUNT, totalCount)
+    }));
+  };
 
   // Get featured templates (top rated / most used - using price as proxy for "premium")
   const featuredTemplates = useMemo(() => {
@@ -262,15 +277,27 @@ export function CategoryTemplateSliders() {
                   </Carousel>
                 </div>
 
-                {/* Mobile: 4-tile grid per category */}
-                <div className="md:hidden grid grid-cols-2 gap-3">
-                  {categoryTemplates.slice(0, 4).map((template) => (
-                    <TemplateCardCompact 
-                      key={template.id} 
-                      template={template} 
-                      onClick={() => handleTemplateClick(template)} 
-                    />
-                  ))}
+                {/* Mobile: 4-tile grid per category with Load More */}
+                <div className="md:hidden">
+                  <div className="grid grid-cols-2 gap-3">
+                    {categoryTemplates.slice(0, getVisibleCount(category)).map((template) => (
+                      <TemplateCardCompact 
+                        key={template.id} 
+                        template={template} 
+                        onClick={() => handleTemplateClick(template)} 
+                      />
+                    ))}
+                  </div>
+                  {getVisibleCount(category) < categoryTemplates.length && (
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      onClick={() => handleLoadMore(category, categoryTemplates.length)}
+                      className="w-full mt-4 text-xs text-muted-foreground hover:text-primary"
+                    >
+                      Load More ({categoryTemplates.length - getVisibleCount(category)} remaining)
+                    </Button>
+                  )}
                 </div>
               </div>
             );
